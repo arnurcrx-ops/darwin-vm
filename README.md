@@ -84,24 +84,27 @@ If you've ever compiled Linux + busybox and booted in qemu (with `-kernel` and
 
 `darwin-vm` has been tested with the following systems:
 
-| Device          | `devname`    | CPU name | iOS 27.0 beta 8 | iOS 26.6 |
-|-----------------|--------------|----------|-----------------|----------|
-| iPhone 17 (A19) | `iPhone18,3` | `t8150`  | ✅              | ✅       |
-| iPhone 16 (A18) | `iPhone17,3` | `t8140`  | ✅              | ✅       |
-| iPhone 15 (A16) | `iPhone15,4` | `t8120`  | ✅              | ✅       |
-| iPhone 14 (A15) | `iPhone14,7` | `t8110`  | ✅              | ✅       |
-| iPhone 13 (A15) | `iPhone14,5` | `t8110`  | ✅              | ✅       |
-| iPhone 12 (A14) | `iPhone13,2` | `t8101`  | ✅              | ✅       |
+| Device          | `devname`    | CPU name | iOS 27.0 (24A437) | iOS 26.6 |
+|-----------------|--------------|----------|-------------------|----------|
+| iPhone 17 (A19) | `iPhone18,3` | `t8150`  | ✅                | ✅       |
+| iPhone 16 (A18) | `iPhone17,3` | `t8140`  | ✅                | ✅       |
+| iPhone 15 (A16) | `iPhone15,4` | `t8120`  | ✅                | ✅       |
+| iPhone 14 (A15) | `iPhone14,7` | `t8110`  | ✅                | ✅       |
+| iPhone 13 (A15) | `iPhone14,5` | `t8110`  | ✅                | ✅       |
+| iPhone 12 (A14) | `iPhone13,2` | `t8101`  | ✅                | ✅       |
 
-| Device         | `devname`    | CPU name | macOS 27.0 beta 8 | macOS 26.6 |
-|----------------|--------------|----------|-------------------|------------|
-| M5 Macbook Air | `Mac17,4`    | `t8142`  | ✅                | ✅         |
-| M4 Mac Mini    | `Mac16,10`   | `t8132`  | ✅                | ✅         |
-| M3 Macbook Air | `Mac15,13`   | `t8122`  | ✅                | ✅         |
-| M2 Mac Mini    | `Mac14,3`    | `t8112`  | ✅                | ✅         |
-| M1 Mac Mini    | `Macmini9,1` | `t8103`  | ✅                | ✅         |
+| Device         | `devname`    | CPU name | macOS 27.0 (26A428) | macOS 26.6 |
+|----------------|--------------|----------|---------------------|------------|
+| M6 Mac Mini    | `Mac18,5`    | `t8152`  | ❌                  | -          |
+| M5 Macbook Air | `Mac17,4`    | `t8142`  | ✅                  | ✅         |
+| M4 Mac Mini    | `Mac16,10`   | `t8132`  | ✅                  | ✅         |
+| M3 Macbook Air | `Mac15,13`   | `t8122`  | ✅                  | ✅         |
+| M2 Mac Mini    | `Mac14,3`    | `t8112`  | ✅                  | ✅         |
+| M1 Mac Mini    | `Macmini9,1` | `t8103`  | ✅                  | ✅         |
 
 ✅ = boots to root shell and can run commands
+
+❌ = fails to boot due to missing `FEAT_CPA` support in qemu (see [#8](https://github.com/jprx/darwin-vm/issues/8) )
 
 Notes:
 - If you don't need MIE, use something without it, as emulating MIE can be slow.

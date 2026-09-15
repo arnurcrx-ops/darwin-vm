@@ -1,11 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
-# Default device: iPhone 16 on iOS 27.0 beta 8
+# Default device: iPhone 16 on iOS 27.0 (24A437)
 # I picked iPhone 16 as the default instead of iPhone 17, as it doesn't have MTE and therefore runs faster.
 # (note that iPhone 16's device name is confusingly "iPhone17,3")
 : "${DEVNAME:=iPhone17,3}"
-: "${URL:=https://updates.cdn-apple.com/2026SpringSeed/2d03d580-843b-4b2a-b09d-976b31c10744/iPhone17,3_27.0_24A5430a_Restore.ipsw}"
+: "${URL:=https://updates.cdn-apple.com/2026FallFCS/5130b3f9-3b4e-469a-b60e-93f6b310cdd9/iPhone17,3_27.0_24A437_Restore.ipsw}"
 
 IPSW_BIN="ipsw_db"
 
