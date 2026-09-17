@@ -26,9 +26,9 @@ jobs:
           DEVNAME: iPhone13,2
           URL: ${{ steps.resolve.outputs.url }}
         run: ./get_files.sh
-
+        
       - name: Fix permissions
-        run: ./fix_perms.sh firmware/ramdisk.dmg
+        run: echo "y" | ./fix_perms.sh firmware/ramdisk.dmg
 
       - name: Upload firmware
         uses: actions/upload-artifact@v4
