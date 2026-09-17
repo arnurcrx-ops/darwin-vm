@@ -1,0 +1,37 @@
+name: Build darwin-vm firmware
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install dependencies
+        run: brew install jq ipsw
+
+      - name: Resolve IPSW URL
+        id: resolve
+        run: |
+          URL=$(ipsw download ipsw --device iPhone13,2 --build 23G90 -u -y | head -1)
+          echo "Resolved URL: $URL"
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+
+      - name: Run get_files.sh
+        env:
+          DEVNAME: iPhone13,2
+          URL: ${{ steps.resolve.outputs.url }}
+        run: ./get_files.sh
+
+      - name: Fix permissions
+        run: ./fix_perms.sh firmware/ramdisk.dmg
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware
+          path: firmware/
